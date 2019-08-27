@@ -1,4 +1,4 @@
-package com.tw.apistackbase;
+package com.example.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,11 +7,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ApiStackBaseApplicationTests {
+public class DemoApplicationTests {
 
-	@Test
-	public void contextLoads() {
-		
-	}
+    @Test
+    public void contextLoads() {
+    }
 
 }
