@@ -3,7 +3,6 @@ package cn.com.zybank.controller;
 import cn.com.zybank.model.Employee;
 import cn.com.zybank.repository.EmployeeRepository;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +21,11 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeesController {
 
     @GetMapping
-    public ResponseEntity<JSONArray> getEmployees() {
+    public ResponseEntity<JSONArray> getEmployeesByName(@RequestParam(value = "name", required = false) String name) {
 
         JSONArray jsonArray = new JSONArray();
-        jsonArray.addAll(EmployeeRepository.getAllEmployees());
+        jsonArray.addAll(EmployeeRepository.findEmployees(name));
+
         return ResponseEntity.ok(jsonArray);
     }
 
@@ -60,6 +60,7 @@ public class EmployeesController {
             EmployeeRepository.addEmployee(employee);
             return ResponseEntity.ok("修改成功");
         }
+
         return ResponseEntity.ok("该员工不存在，修改失败");
     }
 }

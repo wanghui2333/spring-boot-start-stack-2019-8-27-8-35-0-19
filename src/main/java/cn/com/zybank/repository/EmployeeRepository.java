@@ -3,6 +3,7 @@ package cn.com.zybank.repository;
 import cn.com.zybank.model.Employee;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 功能描述 : Employee数据库
@@ -12,7 +13,9 @@ import java.util.ArrayList;
  * @Date : 2019-08-27 20:22
  */
 public class EmployeeRepository {
-    private static ArrayList<Employee> employeeDB = new ArrayList<>();
+
+
+    private static List<Employee> employeeDB = new ArrayList<>();
 
     static {
 
@@ -24,7 +27,7 @@ public class EmployeeRepository {
 
     }
 
-    public static ArrayList<Employee> getAllEmployees(){
+    public static List<Employee> findAllEmployees(){
         return employeeDB;
     }
 
@@ -60,7 +63,7 @@ public class EmployeeRepository {
     }
 
     /**
-     * 功能描述 : 通过查找删除一个employee信息
+     * 功能描述 : 通过id获取一个employee信息
      * @Param : [id]
      * @Return : boolean
      * @Author : 王辉
@@ -74,5 +77,32 @@ public class EmployeeRepository {
             }
         }
         return null;
+    }
+
+    /**
+     * 功能描述 : 通过name获取一个employee信息
+     * @Param : [name]
+     * @Return : cn.com.zybank.model.Employee
+     * @Author : 王辉
+     * @Email : wanghui16@zybank.com.cn
+     * @Date : 2019-08-28 14:49
+     */
+    public static List<Employee> findEmployeeByName(String name) {
+        List<Employee> employees = new ArrayList<>();
+
+        for (int i = 0; i < employeeDB.size(); i++) {
+            if (employeeDB.get(i).getName().equals(name)){
+                employees.add(employeeDB.get(i));
+                return employees;
+            }
+        }
+        return null;
+    }
+
+    public static List<Employee> findEmployees(String name) {
+        if(name == null){
+            return findAllEmployees();
+        }
+        return findEmployeeByName(name);
     }
 }
