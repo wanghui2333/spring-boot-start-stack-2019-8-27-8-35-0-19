@@ -1,6 +1,6 @@
 package cn.com.zybank.repository;
 
-import cn.com.zybank.mode.Employee;
+import cn.com.zybank.model.Employee;
 
 import java.util.ArrayList;
 
@@ -57,5 +57,22 @@ public class EmployeeRepository {
             }
         }
         return false;
+    }
+
+    /**
+     * 功能描述 : 通过查找删除一个employee信息
+     * @Param : [id]
+     * @Return : boolean
+     * @Author : 王辉
+     * @Email : wanghui16@zybank.com.cn
+     * @Date : 2019-08-28 11:47
+     */
+    public static Employee findEmployeeById(int id){
+        for (int i = 0; i < employeeDB.size(); i++) {
+            if (employeeDB.get(i).getId() == id){
+                return employeeDB.get(i);
+            }
+        }
+        return null;
     }
 }

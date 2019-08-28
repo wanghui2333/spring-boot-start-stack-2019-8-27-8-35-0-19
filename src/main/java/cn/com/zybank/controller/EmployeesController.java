@@ -1,6 +1,6 @@
 package cn.com.zybank.controller;
 
-import cn.com.zybank.mode.Employee;
+import cn.com.zybank.model.Employee;
 import cn.com.zybank.repository.EmployeeRepository;
 import com.alibaba.fastjson.JSONArray;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class EmployeesController {
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<JSONArray> getEmployees() {
 
         JSONArray jsonArray = new JSONArray();
@@ -28,13 +28,21 @@ public class EmployeesController {
         return ResponseEntity.ok(jsonArray);
     }
 
-    @PostMapping("")
+    @GetMapping("{id}")
+    public ResponseEntity<Employee> getEmployeesById(@PathVariable int id) {
+
+        Employee employee = EmployeeRepository.findEmployeeById(id);
+
+        return ResponseEntity.ok(employee);
+    }
+
+    @PostMapping
     public ResponseEntity<String> postEmployees(@RequestBody Employee employee) {
         EmployeeRepository.addEmployee(employee);
         return ResponseEntity.ok("添加成功");
     }
 
-    @DeleteMapping("")
+    @DeleteMapping
     public ResponseEntity<String> deleteEmployees(@RequestBody Employee employee) {
 
         if (EmployeeRepository.deleteEmployeeById(employee.getId())){
@@ -44,7 +52,7 @@ public class EmployeesController {
         return ResponseEntity.ok("该员工不存在");
     }
 
-    @PutMapping("")
+    @PutMapping
     public ResponseEntity<String> patchEmployees(@RequestBody Employee employee) {
 
         if (EmployeeRepository.deleteEmployeeById(employee.getId())){

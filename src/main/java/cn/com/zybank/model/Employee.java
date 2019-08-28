@@ -1,4 +1,4 @@
-package cn.com.zybank.mode;
+package cn.com.zybank.model;
 
 import java.io.Serializable;
 
