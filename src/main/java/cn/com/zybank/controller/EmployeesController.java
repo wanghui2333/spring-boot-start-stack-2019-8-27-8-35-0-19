@@ -1,15 +1,15 @@
-package com.example.demo.controller;
+package cn.com.zybank.controller;
 
+import cn.com.zybank.mode.Employee;
+import cn.com.zybank.repository.EmployeeRepository;
 import com.alibaba.fastjson.JSONArray;
-import com.example.demo.mode.Employee;
-import com.example.demo.repository.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 /**
- * 功能描述 : TODO
+ * 功能描述 : Employees处理层
  *
  * @Author : 王辉
  * @Email : wanghui16@zybank.com.cn
@@ -37,7 +37,7 @@ public class EmployeesController {
     @DeleteMapping("")
     public ResponseEntity<String> deleteEmployees(@RequestBody Employee employee) {
 
-        if (EmployeeRepository.deleteEmployee(employee.getId())){
+        if (EmployeeRepository.deleteEmployeeById(employee.getId())){
             return ResponseEntity.ok("删除成功");
         }
 
@@ -47,7 +47,7 @@ public class EmployeesController {
     @PutMapping("")
     public ResponseEntity<String> patchEmployees(@RequestBody Employee employee) {
 
-        if (EmployeeRepository.deleteEmployee(employee.getId())){
+        if (EmployeeRepository.deleteEmployeeById(employee.getId())){
             EmployeeRepository.addEmployee(employee);
             return ResponseEntity.ok("修改成功");
         }

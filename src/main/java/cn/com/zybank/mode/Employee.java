@@ -1,9 +1,9 @@
-package com.example.demo.mode;
+package cn.com.zybank.mode;
 
 import java.io.Serializable;
 
 /**
- * 功能描述 : TODO
+ * 功能描述 : Employee对象
  *
  * @Author : 王辉
  * @Email : wanghui16@zybank.com.cn
